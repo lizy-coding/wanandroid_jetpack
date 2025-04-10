@@ -31,7 +31,7 @@ abstract class BaseVmActivity<VB : ViewBinding, VM : BaseViewModel>(inflate: (La
      * 初始化ViewModel
      */
     private fun initViewModel() {
-        mViewModel = ViewModelProvider(this).get(viewModelClass())
+        mViewModel = ViewModelProvider(this)[viewModelClass()]
     }
 
     /**
@@ -44,12 +44,12 @@ abstract class BaseVmActivity<VB : ViewBinding, VM : BaseViewModel>(inflate: (La
      */
     open fun observe() {
         // 需要登录，跳转登录页
-        mViewModel.needLogin.observe(this, {
+        mViewModel.needLogin.observe(this) {
             if (it) {
                 SpUtil.setBoolean(MyConfig.IS_LOGIN, false)
                 startActivity(Intent(this, LoginActivity::class.java))
             }
-        })
+        }
     }
 
     /**

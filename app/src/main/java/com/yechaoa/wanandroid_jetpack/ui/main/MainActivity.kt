@@ -24,6 +24,9 @@ import com.yechaoa.yutilskt.ActivityUtil
 import com.yechaoa.yutilskt.ShareUtil
 import com.yechaoa.yutilskt.SpUtil
 import com.yechaoa.yutilskt.ToastUtil
+import androidx.core.view.get
+import androidx.activity.OnBackPressedCallback
+
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
@@ -41,6 +44,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         initActionBarDrawer()
 
         initFragments()
+        
+        setupBackPressedCallback()
     }
 
     /**
@@ -125,7 +130,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
-                mAppBarMainBinding.contentMain.bottomNavigation.menu.getItem(position).isChecked = true
+                mAppBarMainBinding.contentMain.bottomNavigation.menu[position].isChecked = true
                 when (position) {
                     0 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_home)
                     1 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_tree)
@@ -138,23 +143,23 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         /**
          * bottom_navigation 点击事件
          */
-        mAppBarMainBinding.contentMain.bottomNavigation.setOnNavigationItemSelectedListener {
+        mAppBarMainBinding.contentMain.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_home -> {
-                    mAppBarMainBinding.contentMain.viewPager.currentItem = 0
-                    return@setOnNavigationItemSelectedListener true
+                    mAppBarMainBinding.contentMain.viewPager.currentItem = MainTab.HOME.position
+                    return@setOnItemSelectedListener true
                 }
                 R.id.navigation_tree -> {
-                    mAppBarMainBinding.contentMain.viewPager.currentItem = 1
-                    return@setOnNavigationItemSelectedListener true
+                    mAppBarMainBinding.contentMain.viewPager.currentItem = MainTab.TREE.position
+                    return@setOnItemSelectedListener true
                 }
                 R.id.navigation_navi -> {
-                    mAppBarMainBinding.contentMain.viewPager.currentItem = 2
-                    return@setOnNavigationItemSelectedListener true
+                    mAppBarMainBinding.contentMain.viewPager.currentItem = MainTab.NAVI.position
+                    return@setOnItemSelectedListener true
                 }
                 R.id.navigation_project -> {
-                    mAppBarMainBinding.contentMain.viewPager.currentItem = 3
-                    return@setOnNavigationItemSelectedListener true
+                    mAppBarMainBinding.contentMain.viewPager.currentItem = MainTab.PROJECT.position
+                    return@setOnItemSelectedListener true
                 }
             }
             false
@@ -181,16 +186,29 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     /**
      * 拦截返回事件，自处理
      */
-    override fun onBackPressed() {
-        if (mBinding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mBinding.drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            if ((System.currentTimeMillis() - mExitTime) > 2000) {
-                ToastUtil.show("再按一次退出" + resources.getString(R.string.wanandroid))
-                mExitTime = System.currentTimeMillis()
-            } else {
-                ActivityUtil.closeAllActivity()
+    private fun setupBackPressedCallback() {
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (mBinding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    mBinding.drawerLayout.closeDrawer(GravityCompat.START)
+                } else {
+                    if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                        ToastUtil.show("再按一次退出" + resources.getString(R.string.wanandroid))
+                        mExitTime = System.currentTimeMillis()
+                    } else {
+                        ActivityUtil.closeAllActivity()
+                    }
+                }
             }
         }
+        onBackPressedDispatcher.addCallback(this, callback)
     }
+}
+
+//底部导航栏
+enum class MainTab(val position: Int, val titleResId: Int) {
+    HOME(0, R.string.title_home),
+    TREE(1, R.string.title_tree),
+    NAVI(2, R.string.title_navi),
+    PROJECT(3, R.string.title_project)
 }

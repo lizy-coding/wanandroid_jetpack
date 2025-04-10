@@ -1,5 +1,6 @@
 package com.yechaoa.wanandroid_jetpack.ui.splash
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.CountDownTimer
 import com.gyf.immersionbar.ImmersionBar
@@ -12,6 +13,7 @@ import com.yechaoa.wanandroid_jetpack.ui.main.MainActivity
 import com.yechaoa.wanandroid_jetpack.util.setOnclickNoRepeat
 import com.yechaoa.yutilskt.SpUtil
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
 
     private lateinit var timer: CountDownTimer

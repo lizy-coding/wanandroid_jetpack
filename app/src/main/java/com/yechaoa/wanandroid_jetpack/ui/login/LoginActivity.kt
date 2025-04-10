@@ -21,7 +21,6 @@ import com.yechaoa.yutilskt.ActivityUtil
 import com.yechaoa.yutilskt.SpUtil
 import com.yechaoa.yutilskt.ToastUtil
 import com.yechaoa.yutilskt.YUtils
-import java.util.*
 
 class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>(ActivityLoginBinding::inflate) {
 
