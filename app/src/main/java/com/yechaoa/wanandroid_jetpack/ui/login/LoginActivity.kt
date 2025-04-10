@@ -137,7 +137,9 @@ class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>(Activ
         return spanBuilder
     }
 
+    @Suppress("OVERRIDE_DEPRECATION")
     override fun onBackPressed() {
+        super.onBackPressed()
         ActivityUtil.closeAllActivity()
     }
 

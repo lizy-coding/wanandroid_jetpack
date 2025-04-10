@@ -131,12 +131,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
             override fun onPageSelected(position: Int) {
                 mAppBarMainBinding.contentMain.bottomNavigation.menu[position].isChecked = true
-                when (position) {
-                    0 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_home)
-                    1 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_tree)
-                    2 -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_navi)
-                    else -> mAppBarMainBinding.toolbar.title = resources.getString(R.string.title_project)
-                }
+                mAppBarMainBinding.toolbar.title = resources.getString(
+                    when (position) {
+                        MainTab.HOME.position -> MainTab.HOME.titleResId
+                        MainTab.TREE.position -> MainTab.TREE.titleResId
+                        MainTab.NAVI.position -> MainTab.NAVI.titleResId
+                        else -> MainTab.PROJECT.titleResId
+                    }
+                )
             }
         })
 
@@ -202,6 +204,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             }
         }
         onBackPressedDispatcher.addCallback(this, callback)
+    }
+
+    @Suppress("OVERRIDE_DEPRECATION")
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }
 
