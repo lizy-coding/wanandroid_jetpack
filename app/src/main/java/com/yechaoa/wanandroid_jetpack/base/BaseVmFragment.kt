@@ -42,7 +42,7 @@ abstract class BaseVmFragment<VB : ViewBinding, VM : BaseViewModel>(inflate: (La
      * 初始化ViewModel
      */
     private fun initViewModel() {
-        mViewModel = ViewModelProvider(this).get(viewModelClass())
+        mViewModel = ViewModelProvider(this)[viewModelClass()]
     }
 
     /**
@@ -55,12 +55,12 @@ abstract class BaseVmFragment<VB : ViewBinding, VM : BaseViewModel>(inflate: (La
      */
     open fun observe() {
         // 需要登录，跳转登录页
-        mViewModel.needLogin.observe(viewLifecycleOwner, {
+        mViewModel.needLogin.observe(viewLifecycleOwner) {
             if (it) {
                 SpUtil.setBoolean(MyConfig.IS_LOGIN, false)
                 startActivity(Intent(requireActivity(), LoginActivity::class.java))
             }
-        })
+        }
     }
 
     /**

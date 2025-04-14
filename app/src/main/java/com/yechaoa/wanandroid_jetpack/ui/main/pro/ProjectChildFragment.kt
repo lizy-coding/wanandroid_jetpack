@@ -71,7 +71,7 @@ class ProjectChildFragment : BaseVmFragment<FragmentProjectChildBinding, Project
 
     override fun observe() {
         super.observe()
-        mViewModel.childList.observe(this, {
+        mViewModel.childList.observe(this) {
             mCurrentSize = it.size
             if (0 == mCurrentPage) {
                 mAdapter.setList(it)
@@ -79,7 +79,7 @@ class ProjectChildFragment : BaseVmFragment<FragmentProjectChildBinding, Project
                 mAdapter.addData(it)
                 mAdapter.loadMoreModule.loadMoreComplete()
             }
-        })
+        }
     }
 
 }

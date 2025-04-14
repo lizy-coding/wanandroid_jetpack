@@ -18,6 +18,7 @@ import com.just.agentweb.WebViewClient
 import com.yechaoa.wanandroid_jetpack.base.BaseActivity
 import com.yechaoa.wanandroid_jetpack.databinding.ActivityDetailBinding
 import com.yechaoa.yutilskt.LogUtil
+import androidx.core.graphics.toColorInt
 
 class DetailActivity : BaseActivity<ActivityDetailBinding>(ActivityDetailBinding::inflate) {
 
@@ -75,8 +76,8 @@ class DetailActivity : BaseActivity<ActivityDetailBinding>(ActivityDetailBinding
         val mTextView = TextView(frameLayout.context)
         mTextView.text = title
         mTextView.textSize = 16f
-        mTextView.setTextColor(Color.parseColor("#727779"))
-        frameLayout.setBackgroundColor(Color.parseColor("#272b2d"))
+        mTextView.setTextColor("#727779".toColorInt())
+        frameLayout.setBackgroundColor("#272b2d".toColorInt())
         val mFlp = FrameLayout.LayoutParams(-2, -2)
         mFlp.gravity = Gravity.CENTER_HORIZONTAL
         val scale: Float = frameLayout.context.resources.displayMetrics.density

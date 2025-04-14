@@ -18,6 +18,7 @@ import q.rorbin.verticaltablayout.VerticalTabLayout
 import q.rorbin.verticaltablayout.adapter.TabAdapter
 import q.rorbin.verticaltablayout.widget.ITabView
 import q.rorbin.verticaltablayout.widget.TabView
+import androidx.core.graphics.toColorInt
 
 class NaviFragment : BaseVmFragment<FragmentNaviBinding, NaviViewModel>(FragmentNaviBinding::inflate) {
 
@@ -108,7 +109,7 @@ class NaviFragment : BaseVmFragment<FragmentNaviBinding, NaviViewModel>(Fragment
         override fun getTitle(position: Int): ITabView.TabTitle {
             return ITabView.TabTitle.Builder()
                 .setContent(naviList[position].name)
-                .setTextColor(Color.parseColor("#FF9800"), Color.parseColor("#757575"))
+                .setTextColor("#FF9800".toColorInt(), "#757575".toColorInt())
                 .setTextSize(16)
                 .build()
         }
