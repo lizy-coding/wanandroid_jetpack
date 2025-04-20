@@ -272,6 +272,7 @@ class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>(Ac
     override fun setListener() {
         super.setListener()
         mBinding.toolbar.setNavigationOnClickListener {
+            @Suppress("DEPRECATION")
             super.onBackPressed()
         }
 
