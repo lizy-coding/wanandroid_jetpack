@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package com.yechaoa.wanandroid_jetpack.ui.main.tree.child
 
 import com.yechaoa.wanandroid_jetpack.base.BaseActivity
@@ -5,6 +7,7 @@ import com.yechaoa.wanandroid_jetpack.data.bean.Tree
 import com.yechaoa.wanandroid_jetpack.databinding.ActivityTreeChildBinding
 import com.yechaoa.wanandroid_jetpack.ui.adapter.CommonViewPagerAdapter
 
+@Suppress("DEPRECATION")
 class TreeChildActivity : BaseActivity<ActivityTreeChildBinding>(ActivityTreeChildBinding::inflate) {
 
     companion object {
@@ -44,6 +47,7 @@ class TreeChildActivity : BaseActivity<ActivityTreeChildBinding>(ActivityTreeChi
 
     private fun setListener() {
         mBinding.toolbar.setNavigationOnClickListener {
+            @Suppress("DEPRECATION")
             super.onBackPressed()
         }
     }

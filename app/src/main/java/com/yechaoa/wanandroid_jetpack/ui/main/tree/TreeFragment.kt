@@ -1,5 +1,6 @@
 package com.yechaoa.wanandroid_jetpack.ui.main.tree
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -25,6 +26,7 @@ class TreeFragment : BaseVmFragment<FragmentTreeBinding, TreeViewModel>(Fragment
 
     private lateinit var mTreeAdapter: TreeAdapter
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun initRecyclerView() {
         mTreeAdapter = TreeAdapter().apply {
             setOnItemClickListener { _, _, position ->

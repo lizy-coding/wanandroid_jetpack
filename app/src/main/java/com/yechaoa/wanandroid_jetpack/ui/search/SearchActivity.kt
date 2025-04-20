@@ -24,7 +24,6 @@ import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -149,7 +148,7 @@ class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>(Ac
         }
 
         //设置输入框文字颜色
-        mEditText = searchView.findViewById(androidx.appcompat.R.id.search_src_text) as EditText
+        mEditText = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)!!
         mEditText.setHintTextColor(ContextCompat.getColor(this, R.color.white30))
         mEditText.setTextColor(ContextCompat.getColor(this, R.color.white))
 

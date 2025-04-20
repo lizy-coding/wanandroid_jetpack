@@ -96,7 +96,7 @@ class CollectActivity : BaseVmActivity<ActivityCollectBinding, CollectViewModel>
                 ToastUtil.show("取消成功")
                 mCollectAdapter.data.removeAt(mPosition)
                 mCollectAdapter.notifyItemRemoved(mPosition)
-                if (mCollectAdapter.data.size == 0) {
+                if (mCollectAdapter.data.isEmpty()) {
                     mCollectAdapter.setEmptyView(R.layout.layout_empty_view)
                 }
             }

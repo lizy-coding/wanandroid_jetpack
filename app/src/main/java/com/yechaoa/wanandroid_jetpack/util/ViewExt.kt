@@ -7,6 +7,8 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import com.yechaoa.wanandroid_jetpack.R
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 
 /**
  * ImageView旋转动画 180°
@@ -26,7 +28,7 @@ fun startImageRotate(imageView: ImageView, toggle: Boolean) {
  */
 fun View.topAnimation(show: Boolean) {
     //要显示且未显示 或 不要显示且显示中  满足二选一条件 即设置显示状态和动画
-    if ((show && visibility == View.GONE) || (!show && visibility == View.VISIBLE)) {
+    if ((show && isGone) || (!show && isVisible)) {
         visibility = if (show) View.VISIBLE else View.GONE
         animation = AnimationUtils.loadAnimation(context, if (show) R.anim.top_in else R.anim.top_out)
     }
@@ -37,7 +39,7 @@ fun View.topAnimation(show: Boolean) {
  */
 fun View.alphaAnimation(show: Boolean) {
     //要显示且未显示 或 不要显示且显示中  满足二选一条件 即设置显示状态和动画
-    if ((show && visibility == View.GONE) || (!show && visibility == View.VISIBLE)) {
+    if ((show && isGone) || (!show && isVisible)) {
         visibility = if (show) View.VISIBLE else View.GONE
         animation = AnimationUtils.loadAnimation(context, if (show) R.anim.alpha_in else R.anim.alpha_out)
     }
