@@ -182,11 +182,11 @@ class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>(Ac
 
     override fun observe() {
         super.observe()
-        mViewModel.hotkeyList.observe(this, {
+        mViewModel.hotkeyList.observe(this) {
             setHotkey(it)
-        })
+        }
 
-        mViewModel.articleList.observe(this, {
+        mViewModel.articleList.observe(this) {
             mBinding.llHotkey.visibility = View.GONE
             mBinding.recyclerView.visibility = View.VISIBLE
 
@@ -202,23 +202,23 @@ class SearchActivity : BaseVmActivity<ActivitySearchBinding, SearchViewModel>(Ac
                 mArticleAdapter.addData(it)
                 mArticleAdapter.loadMoreModule.loadMoreComplete()
             }
-        })
+        }
 
-        mViewModel.collectState.observe(this, {
+        mViewModel.collectState.observe(this) {
             if (it) {
                 ToastUtil.show("收藏成功")
                 mArticleAdapter.data[mPosition].collect = true
                 mArticleAdapter.notifyItemChanged(mPosition)
             }
-        })
+        }
 
-        mViewModel.unCollectState.observe(this, {
+        mViewModel.unCollectState.observe(this) {
             if (it) {
                 ToastUtil.show("取消成功")
                 mArticleAdapter.data[mPosition].collect = false
                 mArticleAdapter.notifyItemChanged(mPosition)
             }
-        })
+        }
     }
 
     private fun setHotkey(list: MutableList<Hotkey>) {

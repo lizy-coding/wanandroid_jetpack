@@ -85,9 +85,9 @@ class TreeFragment : BaseVmFragment<FragmentTreeBinding, TreeViewModel>(Fragment
 
     override fun observe() {
         super.observe()
-        mViewModel.treeList.observe(this, {
+        mViewModel.treeList.observe(this) {
             mTreeAdapter.setList(it)
-        })
+        }
     }
 
 }

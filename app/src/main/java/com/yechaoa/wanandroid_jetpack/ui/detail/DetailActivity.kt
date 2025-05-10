@@ -2,7 +2,6 @@ package com.yechaoa.wanandroid_jetpack.ui.detail
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.os.Build
 import android.text.Html
 import android.view.Gravity
@@ -13,12 +12,12 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.graphics.toColorInt
 import com.just.agentweb.AgentWeb
 import com.just.agentweb.WebViewClient
 import com.yechaoa.wanandroid_jetpack.base.BaseActivity
 import com.yechaoa.wanandroid_jetpack.databinding.ActivityDetailBinding
 import com.yechaoa.yutilskt.LogUtil
-import androidx.core.graphics.toColorInt
 
 class DetailActivity : BaseActivity<ActivityDetailBinding>(ActivityDetailBinding::inflate) {
 

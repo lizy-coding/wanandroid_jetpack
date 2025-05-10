@@ -69,7 +69,7 @@ class RegisterActivity : BaseVmActivity<ActivityRegisterBinding, RegisterViewMod
 
     override fun observe() {
         super.observe()
-        mViewModel.registerState.observe(this, {
+        mViewModel.registerState.observe(this) {
             YUtils.hideLoading()
             if (it) {
                 ToastUtil.show("注册成功，请登录")
@@ -77,7 +77,7 @@ class RegisterActivity : BaseVmActivity<ActivityRegisterBinding, RegisterViewMod
             } else {
                 ToastUtil.show("注册失败")
             }
-        })
+        }
     }
 
     override fun setListener() {

@@ -22,7 +22,7 @@ class ProjectFragment : BaseVmFragment<FragmentProjectBinding, ProjectViewModel>
 
     override fun observe() {
         super.observe()
-        mViewModel.proList.observe(this, {
+        mViewModel.proList.observe(this) {
             //得到标题集合
             val titles: MutableList<String> = ArrayList()
             for (i in it.indices) {
@@ -36,7 +36,7 @@ class ProjectFragment : BaseVmFragment<FragmentProjectBinding, ProjectViewModel>
             }
             mBinding.viewPager.adapter = commonViewPagerAdapter
             mBinding.viewPager.currentItem = 0
-        })
+        }
     }
 
 }

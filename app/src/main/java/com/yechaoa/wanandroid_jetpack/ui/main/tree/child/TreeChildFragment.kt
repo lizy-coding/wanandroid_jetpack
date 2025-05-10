@@ -84,7 +84,7 @@ class TreeChildFragment : BaseVmFragment<FragmentChildBinding, TreeChildViewMode
 
     override fun observe() {
         super.observe()
-        mViewModel.articleList.observe(this, {
+        mViewModel.articleList.observe(this) {
             mCurrentSize = it.size
             if (0 == mCurrentPage) {
                 mArticleAdapter.setList(it)
@@ -92,23 +92,23 @@ class TreeChildFragment : BaseVmFragment<FragmentChildBinding, TreeChildViewMode
                 mArticleAdapter.addData(it)
                 mArticleAdapter.loadMoreModule.loadMoreComplete()
             }
-        })
+        }
 
-        mViewModel.collectState.observe(this, {
+        mViewModel.collectState.observe(this) {
             if (it) {
                 ToastUtil.show("收藏成功")
                 mArticleAdapter.data[mPosition].collect = true
                 mArticleAdapter.notifyItemChanged(mPosition)
             }
-        })
+        }
 
-        mViewModel.unCollectState.observe(this, {
+        mViewModel.unCollectState.observe(this) {
             if (it) {
                 ToastUtil.show("取消成功")
                 mArticleAdapter.data[mPosition].collect = false
                 mArticleAdapter.notifyItemChanged(mPosition)
             }
-        })
+        }
     }
 
 }

@@ -1,10 +1,10 @@
 package com.yechaoa.wanandroid_jetpack.ui.main.navi
 
 import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
+import androidx.core.graphics.toColorInt
 import com.yechaoa.wanandroid_jetpack.R
 import com.yechaoa.wanandroid_jetpack.base.BaseVmFragment
 import com.yechaoa.wanandroid_jetpack.data.bean.Article
@@ -18,7 +18,6 @@ import q.rorbin.verticaltablayout.VerticalTabLayout
 import q.rorbin.verticaltablayout.adapter.TabAdapter
 import q.rorbin.verticaltablayout.widget.ITabView
 import q.rorbin.verticaltablayout.widget.TabView
-import androidx.core.graphics.toColorInt
 
 class NaviFragment : BaseVmFragment<FragmentNaviBinding, NaviViewModel>(FragmentNaviBinding::inflate) {
 
@@ -41,7 +40,7 @@ class NaviFragment : BaseVmFragment<FragmentNaviBinding, NaviViewModel>(Fragment
 
     override fun observe() {
         super.observe()
-        mViewModel.naviList.observe(this, {
+        mViewModel.naviList.observe(this) {
             mNaviList = it
             mTabAdapter = MyTabAdapter(mNaviList)
             mBinding.verticalTabLayout.setTabAdapter(mTabAdapter)
@@ -50,7 +49,7 @@ class NaviFragment : BaseVmFragment<FragmentNaviBinding, NaviViewModel>(Fragment
              */
             mArticles = mNaviList[0].articles
             setFlowLayout(mArticles)
-        })
+        }
     }
 
     /**
