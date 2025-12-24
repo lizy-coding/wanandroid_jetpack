@@ -1,6 +1,6 @@
 # Shared Output Format
 
-Use this format for all module workflows.
+Use this format for all module workflows. If job-market alignment is not requested, mark that section as "Not requested".
 
 - Module: <name>
 - Objective: <1-2 lines>

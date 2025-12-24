@@ -1,6 +1,6 @@
 # Module Workflow: feature-modules
 
-Scope derived from `LEARNING_PLAN.md` skeleton:
+Scope derived from `LEARNING_PLAN.md` skeleton or project module analysis:
 - Feature modules: login/search/collect/etc.
 - `ui/login/`, `ui/search/`, `ui/collect/` and other feature folders under `ui/`
 
@@ -9,5 +9,6 @@ Steps:
 2. Read the target feature folder and identify UI + ViewModel + repository touchpoints.
 3. Map to interview topics: feature-driven architecture, input validation, error/edge cases, API integration.
 4. Pull job requirements using `scripts/fetch_job_requirements.sh` and summarize with `scripts/summarize_job_requirements.sh`.
+   - Skip this step unless the user asks for interview/job-market alignment.
    - If blocked, request 3-5 recent job posts.
 5. Produce output using `references/module-shared-format.md`.
