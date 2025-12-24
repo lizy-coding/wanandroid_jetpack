@@ -1,0 +1,168 @@
+# L2: Module Definitions - 模块执行配置
+# 格式: module_id -> paths + analyze_points + interview_topics
+# 路径使用缩写: $ = app/src/main/java/com/yechaoa/wanandroid_jetpack/
+
+base_path: app/src/main/java/com/yechaoa/wanandroid_jetpack
+
+modules:
+  build:
+    name: Build & Structure
+    name_zh: 构建与结构
+    paths:
+      - settings.gradle.kts
+      - build.gradle.kts
+      - app/build.gradle.kts
+      - buildSrc/build.gradle.kts
+      - gradle/libs.versions.toml
+      - gradle/wrapper/gradle-wrapper.properties
+      - app/src/main/AndroidManifest.xml
+    analyze:
+      - plugin_setup: AGP/KGP/KSP插件配置
+      - dependency_mgmt: 版本目录与依赖管理
+      - build_variants: debug/release构建变体
+      - signing_config: 签名配置(jks/)
+    interview:
+      fundamentals: [gradle_dsl,plugin_apply,dependency_tree]
+      architecture: [agp_transform,task_graph,incremental_build]
+      performance: [build_cache,configuration_cache,parallel_execution]
+      pitfalls: [version_conflict,r8_shrink,manifest_merge]
+
+  mvvm:
+    name: MVVM Base
+    name_zh: MVVM基类
+    paths:
+      - $/base/BaseActivity.kt
+      - $/base/BaseFragment.kt
+      - $/base/BaseVmActivity.kt
+      - $/base/BaseVmFragment.kt
+      - $/base/BaseViewModel.kt
+      - $/base/BaseRepository.kt
+      - $/base/BaseBean.kt
+      - $/base/BaseDialogFragment.kt
+      - $/base/BaseBottomSheetDialog.kt
+    analyze:
+      - view_binding: ViewBinding泛型封装
+      - lifecycle_mgmt: 生命周期绑定
+      - vm_creation: ViewModel创建与作用域
+      - error_handling: 统一异常处理
+      - pagination: 分页参数管理
+    interview:
+      fundamentals: [lifecycle_states,viewbinding_vs_databinding,generics]
+      architecture: [mvvm_layers,single_source_of_truth,unidirectional_flow]
+      performance: [memory_leak,coroutine_scope,lazy_loading]
+      pitfalls: [fragment_recreate,config_change,livedata_observer]
+
+  home:
+    name: Main UI & Navigation
+    name_zh: 主页与导航
+    paths:
+      - $/ui/main/MainActivity.kt
+      - $/ui/main/home/HomeFragment.kt
+      - $/ui/main/home/HomeViewModel.kt
+      - $/ui/main/home/HomeRepository.kt
+      - $/ui/main/tree/TreeFragment.kt
+      - $/ui/main/navi/NaviFragment.kt
+      - $/ui/main/pro/ProjectFragment.kt
+      - $/ui/adapter/CommonViewPagerAdapter.kt
+      - $/ui/adapter/ArticleAdapter.kt
+      - $/ui/adapter/BannerImageAdapter.kt
+      - app/src/main/res/layout/activity_main.xml
+      - app/src/main/res/layout/content_main.xml
+      - app/src/main/res/menu/menu_bottom_nav.xml
+    analyze:
+      - nav_architecture: DrawerLayout+ViewPager+BottomNav
+      - fragment_mgmt: Fragment切换与懒加载
+      - list_rendering: RecyclerView+BaseQuickAdapter
+      - banner_impl: Banner轮播实现
+      - state_sync: ViewPager与BottomNav同步
+    interview:
+      fundamentals: [fragment_lifecycle,viewpager_adapter,recyclerview_vh]
+      architecture: [navigation_component,backstack,deep_link]
+      performance: [offscreen_limit,diffutil,image_cache]
+      pitfalls: [illegal_state,scroll_position,tab_reselect]
+
+  data:
+    name: Data Chain
+    name_zh: 数据链路
+    paths:
+      - $/data/http/Api.kt
+      - $/data/http/RetrofitClient.kt
+      - $/data/http/ApiException.kt
+      - $/data/http/interceptor/AddCookiesInterceptor.kt
+      - $/data/http/interceptor/ReceivedCookiesInterceptor.kt
+      - $/data/room/HistoryDao.kt
+      - $/data/room/HistoryDatabase.kt
+      - $/data/bean/Article.kt
+      - $/data/bean/Banner.kt
+      - $/data/bean/User.kt
+      - $/data/bean/Collect.kt
+      - $/data/bean/History.kt
+    analyze:
+      - retrofit_setup: Retrofit+OkHttp配置
+      - interceptor_chain: 拦截器链(Cookie/日志)
+      - api_definition: 接口定义与响应解析
+      - room_setup: Room数据库+DAO
+      - entity_design: 实体类设计
+    interview:
+      fundamentals: [http_protocol,json_serialization,sql_basics]
+      architecture: [repository_pattern,offline_first,cache_strategy]
+      performance: [connection_pool,gzip,db_index]
+      pitfalls: [ssl_pinning,thread_safety,migration_error]
+
+  feature:
+    name: Feature Modules
+    name_zh: 功能模块
+    paths:
+      - $/ui/login/LoginActivity.kt
+      - $/ui/login/LoginViewModel.kt
+      - $/ui/login/LoginRepository.kt
+      - $/ui/register/RegisterActivity.kt
+      - $/ui/search/SearchActivity.kt
+      - $/ui/search/SearchViewModel.kt
+      - $/ui/collect/CollectActivity.kt
+      - $/ui/collect/CollectViewModel.kt
+      - $/ui/detail/DetailActivity.kt
+      - $/ui/splash/SplashActivity.kt
+      - $/ui/about/AboutActivity.kt
+    sub_features:
+      login: [$/ui/login/]
+      register: [$/ui/register/]
+      search: [$/ui/search/]
+      collect: [$/ui/collect/]
+      detail: [$/ui/detail/]
+      splash: [$/ui/splash/]
+      about: [$/ui/about/]
+    analyze:
+      - form_validation: 输入验证逻辑
+      - auth_flow: 登录/注册流程
+      - webview_usage: WebView详情页
+      - search_impl: 搜索与历史记录
+      - collect_sync: 收藏状态同步
+    interview:
+      fundamentals: [input_validation,session_mgmt,intent_extra]
+      architecture: [feature_module,clean_arch,use_case]
+      performance: [webview_optimize,preload,animation]
+      pitfalls: [token_expire,back_navigation,state_loss]
+
+  test:
+    name: Testing & Quality
+    name_zh: 测试与质量
+    paths:
+      - app/src/test/java/com/yechaoa/wanandroid_jetpack/ExampleUnitTest.kt
+      - app/src/androidTest/java/com/yechaoa/wanandroid_jetpack/ExampleInstrumentedTest.kt
+      - app/build.gradle.kts  # testImplementation deps
+    analyze:
+      - unit_test: JUnit单元测试
+      - instrumented: Android仪器测试
+      - test_deps: 测试依赖配置
+      - coverage: 覆盖率配置
+    interview:
+      fundamentals: [junit_assert,mock_stub,test_pyramid]
+      architecture: [tdd,test_double,ci_pipeline]
+      performance: [parallel_test,test_sharding,flaky_test]
+      pitfalls: [async_test,context_leak,robolectric_shadow]
+
+# 输出到learn_plan/的命名规则
+export:
+  dir: learn_plan
+  pattern: "module-{id}-{YYYYMMDD}.md"

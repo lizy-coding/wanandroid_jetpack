@@ -1,34 +1,72 @@
 # Repository Guidelines
 
-## Project Structure & Module Organization
-- Single Android app module in `app/` with sources under `app/src/main/java/com/yechaoa/wanandroid_jetpack/`.
-- Feature packages: `ui/` (screens/fragments), `data/` (network, room, models), `base/` (shared MVVM base classes), `common/` (config), `util/` (helpers).
-- Resources live in `app/src/main/res/` (layouts, drawables, values). Tests are in `app/src/test/` (unit) and `app/src/androidTest/` (instrumented).
-- Build configuration is in `build.gradle.kts`, `app/build.gradle.kts`, `gradle/`, and `buildSrc/`. Screenshots are in `screenshot/`.
+## Project Structure
+```
+app/src/main/java/com/yechaoa/wanandroid_jetpack/
+├── base/     # MVVM base classes
+├── common/   # Config constants
+├── data/     # Network + Room + Entities
+├── ui/       # Features (login/search/collect/main/...)
+└── util/     # Helpers
+```
 
-## Build, Test, and Development Commands
-- `./gradlew assembleDebug` builds a debug APK.
-- `./gradlew installDebug` installs the debug build on a connected device or emulator.
-- `./gradlew assembleRelease` builds a release APK (requires signing config in `jks/keystore.properties`).
-- `./gradlew testDebugUnitTest` runs local unit tests.
-- `./gradlew connectedDebugAndroidTest` runs instrumented tests on a device/emulator.
-- `./gradlew lintDebug` runs Android Lint on the debug variant.
+## Commands
+| Task | Command |
+|------|---------|
+| Build debug | `./gradlew assembleDebug` |
+| Install | `./gradlew installDebug` |
+| Build release | `./gradlew assembleRelease` |
+| Unit test | `./gradlew testDebugUnitTest` |
+| UI test | `./gradlew connectedDebugAndroidTest` |
+| Lint | `./gradlew lintDebug` |
 
-## Coding Style & Naming Conventions
-- Kotlin (JVM 17) with 4-space indentation; use Android Studio formatting defaults.
-- Classes/objects: `PascalCase`; functions/vars: `camelCase`; constants: `UPPER_SNAKE_CASE`.
-- Resource names in `lower_snake_case` (e.g., `fragment_home.xml`, `ic_nav_back.xml`).
-- Keep MVVM boundaries: UI logic in `ui/`, data access in `data/`, shared abstractions in `base/`.
+## Code Style
+- Kotlin JVM 17, 4-space indent
+- Class: `PascalCase`, func/var: `camelCase`, const: `UPPER_SNAKE`
+- Resource: `lower_snake_case`
+- MVVM: UI→ViewModel→Repository→Data
 
-## Testing Guidelines
-- Unit tests use JUnit in `app/src/test/` (name classes `*Test.kt`).
-- Instrumented tests use AndroidX/JUnit/Espresso in `app/src/androidTest/` (e.g., `*InstrumentedTest.kt`).
-- Aim to cover ViewModel logic and data transformations; keep UI tests focused on key flows.
+## Commit Style
+`type: description` (feat/fix/style/refactor/test/docs)
 
-## Commit & Pull Request Guidelines
-- Follow the existing commit style: `type: short description` (e.g., `feat: add search history`, `style: fix warnings`).
-- PRs should describe scope, key changes, and testing done; include screenshots or screen recordings for UI changes.
+---
 
-## Security & Configuration Tips
-- `local.properties` stores the SDK path; do not commit machine-specific values.
-- Release signing reads `jks/keystore.properties` and the keystore file; keep secrets out of version control.
+## Learning Module Skill
+
+分析项目模块用于学习，使用 `/analyze <module>` 或自然语言触发。
+
+### 双层架构
+```
+L1: router.yaml    → 关键词匹配 → module_id
+L2: modules.yaml   → 路径+分析点+面试主题
+L3: output.yaml    → 输出模板
+```
+
+### 配置路径
+```
+.claude/skills/android-learn/
+├── router.yaml   # 关键词路由表
+├── modules.yaml  # 模块执行配置
+└── output.yaml   # 输出格式模板
+```
+
+### 模块 ID
+| ID | 关键词 |
+|----|--------|
+| build | gradle,manifest,构建,plugin |
+| mvvm | base,viewmodel,基类,架构 |
+| home | main,首页,导航,bottomnav |
+| data | http,retrofit,room,网络,数据 |
+| feature | login,search,collect,登录,搜索 |
+| test | test,测试,lint,coverage |
+
+### 执行流程
+1. 匹配关键词 → `router.yaml`
+2. 加载模块配置 → `modules.yaml`
+3. 读取源文件并分析
+4. 生成报告 → `output.yaml`
+5. 导出 → `learn_plan/module-{id}-{date}.md`
+
+### 触发方式
+- 命令: `/analyze login`
+- 自然语言: "分析登录模块" / "学习网络层"

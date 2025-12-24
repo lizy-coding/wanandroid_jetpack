@@ -1,0 +1,54 @@
+# Output Template - 输出格式模板
+# 变量: {var} 运行时替换
+
+template:
+  header: |
+    # Module: {name} ({name_zh})
+    > Date: {date} | Status: Done
+
+  anchors: |
+    ## Anchors
+    {paths_list}
+
+  concepts: |
+    ## Key Concepts
+    {analyze_points}
+
+  interview: |
+    ## Interview Focus
+    | Category | Topics |
+    |----------|--------|
+    | Fundamentals | {fundamentals} |
+    | Architecture | {architecture} |
+    | Performance | {performance} |
+    | Pitfalls | {pitfalls} |
+
+  tasks: |
+    ## Hands-on Tasks
+    {task_list}
+
+  followup: |
+    ## Follow-up
+    {questions}
+
+  notes: |
+    ---
+    ## Learning Notes
+    <!-- Add your notes here -->
+
+# 任务生成规则
+task_rules:
+  count: 2-4
+  types:
+    - add_feature: 新增功能
+    - refactor: 重构优化
+    - fix_issue: 问题修复
+    - test: 添加测试
+  bind_to: paths  # 任务需关联具体文件
+
+# 导出配置
+export:
+  path: learn_plan/module-{id}-{date}.md
+  update_index: learn_plan/LEARNING_PLAN.md
+  index_section: "## Completed Analyses"
+  index_format: "| {name} | {date} | [{filename}](./{filename}) |"

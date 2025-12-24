@@ -1,0 +1,89 @@
+# L1: Keyword Router - 关键词路由表
+# 匹配用户输入 → 路由到模块ID
+# 格式: module_id: [keywords...]
+
+routes:
+  build:
+    - build
+    - gradle
+    - manifest
+    - 构建
+    - 结构
+    - structure
+    - entrypoint
+    - plugin
+    - 插件
+    - dependency
+    - 依赖
+
+  mvvm:
+    - base
+    - mvvm
+    - viewmodel
+    - 基类
+    - 架构
+    - architecture
+    - repository
+    - livedata
+    - lifecycle
+
+  home:
+    - main
+    - home
+    - 首页
+    - 主页
+    - navigation
+    - 导航
+    - drawer
+    - 底部栏
+    - bottomnav
+    - viewpager
+
+  data:
+    - http
+    - retrofit
+    - room
+    - network
+    - api
+    - 网络
+    - 数据
+    - database
+    - ksp
+    - okhttp
+    - interceptor
+    - cookie
+
+  feature:
+    - login
+    - 登录
+    - register
+    - 注册
+    - search
+    - 搜索
+    - collect
+    - 收藏
+    - detail
+    - 详情
+    - splash
+    - 启动
+    - about
+    - 关于
+
+  test:
+    - test
+    - 测试
+    - unit
+    - 单元
+    - lint
+    - coverage
+    - 覆盖
+    - 质量
+    - espresso
+    - instrumented
+
+# 路由规则
+rules:
+  - match: first_keyword  # 首个匹配的关键词决定模块
+  - case: insensitive     # 大小写不敏感
+  - lang: zh|en           # 支持中英文
+  - fallback: ask_user    # 无匹配时询问用户

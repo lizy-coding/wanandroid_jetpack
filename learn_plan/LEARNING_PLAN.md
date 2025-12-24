@@ -78,6 +78,12 @@ android-learning-module.skill            # 打包产物
    追踪 `data/http/`（Retrofit/OkHttp）与 `data/room/`（Room + KSP），理解数据从接口到本地缓存的路径。
 5. **功能模块拆解**  
    按 `ui/login/`、`ui/search/`、`ui/collect/` 等模块逐个深入，结合业务流程与接口模型。
-6. **测试与规范补充**  
+6. **测试与规范补充**
    关注 `src/test/` 与 `src/androidTest/`，理解 JUnit/Espresso 的使用与命名规则。
+
+## Completed Analyses
+
+| Module | Date | File |
+|--------|------|------|
+| Main UI & Home Navigation | 2024-12-24 | [module-ui-main-home-20251224.md](./module-ui-main-home-20251224.md) |
 
