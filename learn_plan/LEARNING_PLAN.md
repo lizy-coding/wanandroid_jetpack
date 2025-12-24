@@ -31,36 +31,24 @@ Data（Retrofit/OkHttp/Room/Entity）
 
 ## Skills 骨架图（学习助手）
 ```
-skills/
-└── android-learning-module/
-    ├── SKILL.md                         # 路由与触发规则
-    ├── references/
-    │   ├── module-shared-format.md      # 统一输出格式
-    │   ├── module-build-and-structure.md
-    │   ├── module-mvvm-base.md
-    │   ├── module-ui-main-home.md
-    │   ├── module-data-chain.md
-    │   ├── module-feature-modules.md
-    │   └── module-testing-quality.md
-    └── scripts/
-        ├── fetch_job_requirements.sh
-        └── summarize_job_requirements.sh
-android-learning-module.skill            # 打包产物
+.claude/
+└── skills/
+    └── android-learn/
+       ├── SKILL.md        # 入口 (37行) - 触发词 + 一级路由 + 执行流程
+       ├── router.yaml     # L1 完整关键词路由表
+       ├── modules.yaml    # L2 模块路径与分析点
+       └── output.yaml     # L3 输出模板与导出规则
 ```
 
 ### Skills 层级作用
-- `SKILL.md`：只负责识别用户输入并路由到对应的二级模块工作流。
-- `references/module-*.md`：按模块拆分的二级工作流，规定分析步骤与产出要求。
-- `references/module-shared-format.md`：所有模块统一的输出格式模板。
-- `scripts/*.sh`：招聘要求检索与归类工具（只标识用途，不展开实现）。
-- `.skill`：可分发的技能包，便于复用与迁移。
+- `router.yaml`：按关键词路由到模块 ID（L1）。
+- `modules.yaml`：模块定义（base_path、paths、analyze、interview、export）（L2）。
+- `output.yaml`：输出模板、任务规则、导出路径与索引更新规则。
 
 ### Skills 使用方式（单模块）
-1. 从 `LEARNING_PLAN.md` 中选定一个模块（一次只分析一个）。
-2. 由 `SKILL.md` 将模块映射到对应的 `references/module-*.md`。
-3. 按模块工作流读取项目路径并输出分析结果。
-4. 如需招聘要求，对接 `scripts/fetch_job_requirements.sh` + `scripts/summarize_job_requirements.sh`；若不可用，手动补充招聘信息。
-5. 输出必须遵循 `references/module-shared-format.md`。
+1. 先用 `router.yaml` 根据关键词确定模块 ID（或直接从 `modules.yaml` 选模块）。
+2. 在 `modules.yaml` 中读取该模块的路径与分析要点。
+3. 按 `output.yaml` 的模板生成 `learn_plan/module-{id}-{date}.md` 并更新 `## Completed Analyses`。
 
 ## 插件与构建入口（先知晓）
 - Android Gradle Plugin：项目构建与打包入口（`build.gradle.kts`, `app/build.gradle.kts`）。
@@ -86,4 +74,4 @@ android-learning-module.skill            # 打包产物
 | Module | Date | File |
 |--------|------|------|
 | Main UI & Home Navigation | 2024-12-24 | [module-ui-main-home-20251224.md](./module-ui-main-home-20251224.md) |
-
+| Login | 2024-12-24 | [module-login-20251224.md](./module-login-20251224.md) |
